@@ -1,20 +1,22 @@
 import React from 'react';
-import { Route, Switch} from 'react-router';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 
 import Balance from './Balance'
-import addTransaction from './addTransaction'
-import spendPoints from './spendPoints'
-import allTransactions from './allTransactions'
+import AddTransaction from './AddTransaction'
+import SpendPoints from './SpendPoints'
+import AllTransactions from './AllTransactions'
 
 const Routes = () => {
     return (
-        <Switch>
-            <Route exact path ='/' component={Balance}/>
-            <Route exact path ='/add-transaction' component={addTransaction}/>
-            <Route exact path ='/spend-points' component={spendPoints}/>
-            <Route exact path ='/all-transactions' component={allTransactions}/>
-
-        </Switch>
+        <BrowserRouter>
+            <Switch>
+                <Route exact path ='/' component={Balance}/>
+                <Route exact path ='/add-transaction' component={AddTransaction}/>
+                <Route exact path ='/spend-points' component={SpendPoints}/>
+                <Route exact path ='/all-transactions' component={AllTransactions}/>
+            </Switch>
+        </BrowserRouter>
     );
 };
 
