@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
+import {GlobalContext} from '../context/GlobalState';
 
-class balance extends Component {
-    render() {
-        return (
-            <div>
-                <h1>this is the total balance</h1>
-            </div>
-        );
-    }
-}
+const Balance = () => {
+    const {transactions }= useContext(GlobalContext);
 
-export default balance;
+    const amount = transactions.map( transaction => transaction.points)
+    const total = amount.reduce((acc, item) => (acc +=item),0)
+
+    return (
+        <div>
+            <h2>Your Balance</h2>
+                <h4>{total} POINTS</h4>
+        </div>
+    );
+};
+
+export default Balance;
+

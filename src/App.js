@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 import NavBar from './components/NavBar';
 import Routes from './components/Routes';
 
-
+import {GlobalProvider} from './context/GlobalState'
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <GlobalProvider>
         <h1> Hello User </h1>
         <NavBar/>
         <Routes/>
-      </div>
+      </GlobalProvider>
     );
   }
 }

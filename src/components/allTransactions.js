@@ -1,13 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
+import {GlobalContext} from '../context/GlobalState';
+import {Transaction} from './Transaction';
 
-class allTransactions extends Component {
-    render() {
-        return (
-            <div>
-                <h1>All transactions</h1>
-            </div>
-        );
-    }
-}
+const AllTransactions = () => {
 
-export default allTransactions;
+    const {transactions }= useContext(GlobalContext);
+
+    return (
+        <div>
+             <h1>All transactions</h1>
+
+             {transactions.map(transaction =>( <Transaction key={transaction.id} transaction={transaction}/>))}
+        </div>
+    );
+};
+
+export default AllTransactions;
+
+
+
+

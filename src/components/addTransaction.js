@@ -1,13 +1,33 @@
-import React, { Component } from 'react';
+import React, {useState }from 'react';
 
-class addTransaction extends Component {
-    render() {
+const AddTransaction = () => {
+
+    const [payer, setPayer]= useState('');
+    const [points,setPoints] = useState(0);
+
         return (
-            <div>
-                <h1>This is to add a Transaction</h1>
-            </div>
-        );
-    }
-}
+           <form>
+               <label>Payer </label>
+                <br/>
+                <select name="payer" value={payer} onChange={(e)=> setPayer(e.target.value)} placeholder="Select Payer" required>
+                    <option value=""> </option>
+                    <option value="Danon">DANON</option>
+                    <option value="Unilever">UNILEVER</option>
+                    <option value="Miller Coors">MILLER COORS</option>
+                </select>
+                <br/>
+                <label> Points</label>
+                <br/>
+                <input type="number" name="price"  value={points} onChange={(e)=> setPoints(e.target.value)} placeholder="Enter Points" required/>
+                <br/>
+                <button>Add Transaction</button>
+           </form>
+    );
+};
 
-export default addTransaction;
+export default AddTransaction;
+
+
+
+
+
