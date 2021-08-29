@@ -1,16 +1,11 @@
-import React, {useState, useContext }from 'react';
-import {GlobalContext} from '../context/GlobalState';
-// 
+import React, {useState}from 'react';
+
 
 
 const AddTransaction = () => {
 
     const [payer, setPayer]= useState('');
     const [points,setPoints] = useState(0);
-
-    const {addTransaction} = useContext(GlobalContext)
-
-    debugger
 
     const onSubmit = e => {
         e.preventDefault();
@@ -21,17 +16,12 @@ const AddTransaction = () => {
              points: +points, 
              timestamp: Date().toLocaleString()
         }
-        debugger
-         localStorage.setItem('transaction'+localStorage.length, [JSON.stringify(newTransaction)])
-        addTransaction(newTransaction)
     
-        // <Redirect to="/"/>
+         localStorage.setItem('transaction'+localStorage.length, [JSON.stringify(newTransaction)])
+        
     }
 
         return (
-
-        
-
            <form onSubmit={ onSubmit}>
                <label>Payer </label>
                 <br/>

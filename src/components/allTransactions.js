@@ -1,22 +1,29 @@
-import React, {useContext } from 'react';
-import {GlobalContext} from '../context/GlobalState';
+import React, { Component } from 'react';
 import {Transaction} from './Transaction';
 
-const AllTransactions = () => {
+class allTransactions extends Component {
+    getTransactions(){
+        
+        if(localStorage.length !== 0){
+            let transactions = []
+            for(let i = 0 ; i<localStorage.length ; i++){
+                transactions.push(JSON.parse(localStorage[localStorage.key(i)]))
+            }
+            return transactions
+        }else{
+            return 0
+        }
+    }
 
-    const {transactions }= useContext(GlobalContext);
+    render() {
+        return (
+            <div>
+                <h1> AllTransactions</h1>
+                {this.getTransactions() === 0 ? 'No Transaction' : this.getTransactions().map(transaction =>( <Transaction key={transaction.id} transaction={transaction}/>))}
+            </div>
+        );
+    }
+}
 
-    return (
-        <div>
-             <h1>All transactions</h1>
-
-             {transactions.map(transaction =>( <Transaction key={transaction.id} transaction={transaction}/>))}
-        </div>
-    );
-};
-
-export default AllTransactions;
-
-
-
+export default allTransactions;
 
