@@ -2,6 +2,7 @@ import './App.css';
 import React, { Component } from 'react';
 import NavBar from './components/NavBar';
 import Routes from './components/Routes';
+import Balance from './components/Balance';
 
 import {GlobalProvider} from './context/GlobalState'
 
@@ -10,6 +11,7 @@ class App extends Component {
     return (
       <GlobalProvider>
         <h1> Hello User </h1>
+        <Balance/>
         <NavBar/>
         <Routes/>
       </GlobalProvider>

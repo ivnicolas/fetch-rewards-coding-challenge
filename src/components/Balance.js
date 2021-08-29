@@ -1,4 +1,4 @@
-import React, { Component, useContext } from 'react';
+import React, {useContext } from 'react';
 import {GlobalContext} from '../context/GlobalState';
 
 const Balance = () => {
@@ -6,7 +6,7 @@ const Balance = () => {
 
     const amount = transactions.map( transaction => transaction.points)
     const total = amount.reduce((acc, item) => (acc +=item),0)
-
+    
     return (
         <div>
             <h2>Your Balance</h2>

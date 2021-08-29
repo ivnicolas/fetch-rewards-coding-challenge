@@ -1,12 +1,36 @@
-import React, {useState }from 'react';
+import React, {useState, useContext }from 'react';
+import {GlobalContext} from '../context/GlobalState';
+// 
+
 
 const AddTransaction = () => {
 
     const [payer, setPayer]= useState('');
     const [points,setPoints] = useState(0);
 
+    const {addTransaction} = useContext(GlobalContext)
+
+    const onSubmit = e => {
+        e.preventDefault();
+      
+        const newTransaction = {
+             id: Math.floor(Math.random() * 10000), 
+             payer, 
+             points: +points, 
+             timestamp: Date().toLocaleString()
+        }
+
+        debugger 
+        addTransaction(newTransaction)
+    
+        // <Redirect to="/"/>
+    }
+
         return (
-           <form>
+
+        
+
+           <form onSubmit={ onSubmit}>
                <label>Payer </label>
                 <br/>
                 <select name="payer" value={payer} onChange={(e)=> setPayer(e.target.value)} placeholder="Select Payer" required>
