@@ -1,9 +1,9 @@
 import React, {useState}from 'react';
-
-
+import { useHistory } from 'react-router-dom';
 
 const AddTransaction = () => {
 
+    const history = useHistory();
     const [payer, setPayer]= useState('');
     const [points,setPoints] = useState(0);
 
@@ -18,7 +18,9 @@ const AddTransaction = () => {
         }
     
          localStorage.setItem('transaction'+localStorage.length, [JSON.stringify(newTransaction)])
+         history.push('/')
         
+
     }
 
         return (
