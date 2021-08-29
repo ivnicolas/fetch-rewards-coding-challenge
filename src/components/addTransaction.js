@@ -16,8 +16,17 @@ const AddTransaction = () => {
              points: +points, 
              timestamp: Date().toLocaleString()
         }
-    
-         localStorage.setItem('transaction'+localStorage.length, [JSON.stringify(newTransaction)])
+        
+        //you need to account for if there is something in local storage and if there is not 
+        if(localStorage.length!== 0 ){
+            let stored = JSON.parse(localStorage.getItem("transactions"));
+            stored.push(newTransaction)
+            localStorage.setItem("transactions", JSON.stringify(stored))
+        }else{
+            let transaction = new Array (1).fill(newTransaction)
+            localStorage.setItem('transactions', JSON.stringify(transaction))
+        }
+
          history.push('/')
         
 
