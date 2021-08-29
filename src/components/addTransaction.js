@@ -10,17 +10,19 @@ const AddTransaction = () => {
 
     const {addTransaction} = useContext(GlobalContext)
 
+    debugger
+
     const onSubmit = e => {
         e.preventDefault();
       
         const newTransaction = {
-             id: Math.floor(Math.random() * 10000), 
+             id: localStorage.length , 
              payer, 
              points: +points, 
              timestamp: Date().toLocaleString()
         }
-
-        debugger 
+        debugger
+         localStorage.setItem('transaction'+localStorage.length, [JSON.stringify(newTransaction)])
         addTransaction(newTransaction)
     
         // <Redirect to="/"/>
