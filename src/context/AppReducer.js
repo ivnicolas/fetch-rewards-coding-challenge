@@ -4,7 +4,7 @@
              debugger 
              return {
                 ...state,
-                transactions: [action.payload , ...state.transactions,]
+                transactions: state.transactions.concat(action.payload)
              }
          default:
              return state
