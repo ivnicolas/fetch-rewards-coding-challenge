@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 class Balance extends Component {
     
     getPayers(){
-    let allTransactions = JSON.parse(localStorage.transactions)
+    let allTransactions = JSON.parse(localStorage.pointsToSpend)
       if(localStorage.length !==0) {
         let payers = allTransactions.reduce(function(r,a){
             r[a.payer] = r[a.payer]+a.points || a.points;
             return r
         }, Object.create(null))
+        localStorage.setItem("payers", JSON.stringify(payers))
         return JSON.stringify(payers)
       }
       else{

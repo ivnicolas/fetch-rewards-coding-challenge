@@ -22,9 +22,11 @@ const AddTransaction = () => {
             let stored = JSON.parse(localStorage.getItem("transactions"));
             stored.push(newTransaction)
             localStorage.setItem("transactions", JSON.stringify(stored))
+            localStorage.setItem("pointsToSpend", JSON.stringify(stored))
         }else{
             let transaction = new Array (1).fill(newTransaction)
             localStorage.setItem('transactions', JSON.stringify(transaction))
+            localStorage.setItem("pointsToSpend", JSON.stringify(transaction))
         }
 
          history.push('/')
@@ -45,7 +47,7 @@ const AddTransaction = () => {
                 <br/>
                 <label> Points</label>
                 <br/>
-                <input type="number" name="price"  value={points} onChange={(e)=> setPoints(e.target.value)} placeholder="Enter Points" required/>
+                <input type="number" name="points"  value={points} onChange={(e)=> setPoints(e.target.value)} placeholder="Enter Points" required/>
                 <br/>
                 <button>Add Transaction</button>
            </form>
