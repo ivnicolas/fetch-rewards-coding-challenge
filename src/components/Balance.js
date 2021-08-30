@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 class Balance extends Component {
     
     getPayers(){
-    let allTransactions = JSON.parse(localStorage.transactions)
+    // let allTransactions = JSON.parse(localStorage.transactions)
       if(localStorage.transactions) {
+        let allTransactions = JSON.parse(localStorage.transactions)
         let payers = allTransactions.reduce(function(r,a){
-            if(r[a.payer]){
+            if(r[a.payer]!== undefined){
+                
                 r[a.payer]+=a.points
             } else{
+               
                 r[a.payer]=a.points;
             } 
             return r
@@ -17,6 +20,7 @@ class Balance extends Component {
         return JSON.stringify(payers)
       }
       else{
+         
           return "No Transactions to Report"
       }
     }

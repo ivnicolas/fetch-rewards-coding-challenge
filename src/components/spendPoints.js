@@ -34,21 +34,16 @@ const SpendPoints = () => {
                     pointsSpent+=pointsToSpend[i].points
                     //adjust the payer array to account for spent points 
                     payerBalance[pointsToSpend[i].payer] -= pointsToSpend[i].points
-                  
-
-                  
-
-
                     //set that entry equal to zero 
                     pointsToSpend[i].points = 0
-                    debugger
+                    
             }   else{
                     //all point cover the remainder
                 let difference=spendRequest.points - pointsSpent
                 let remainder = pointsToSpend[i].points - difference
 
                     const transaction = {
-                        id: JSON.parse(localStorage.transactions).length , 
+                        id: Math.floor(Math.random()*10000) , 
                         payer: pointsToSpend[i].payer,
                         points: -difference, 
                         timestamp: Date().toLocaleString()
@@ -60,9 +55,11 @@ const SpendPoints = () => {
 
                    pointsToSpend[i].points = remainder
 
-                    debugger
+                    
                 }
         }
+        let newPointsToSpend = pointsToSpend.filter(transaction => transaction.points !== 0)
+        localStorage.setItem("pointsToSpend", JSON.stringify(newPointsToSpend))
         localStorage.setItem("transactions", JSON.stringify(stored))
         localStorage.setItem("payers", JSON.stringify(payerBalance))
 

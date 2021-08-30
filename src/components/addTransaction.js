@@ -11,14 +11,13 @@ const AddTransaction = () => {
         e.preventDefault();
       
         const newTransaction = {
-             id: localStorage.length , 
+             id: Math.floor(Math.random()*10000) , 
              payer, 
              points: +points, 
              timestamp: Date().toLocaleString()
-        }
-        
+        } 
         //you need to account for if there is something in local storage and if there is not 
-        if(localStorage.length!== 0 ){
+        if(localStorage.transactions ){
             let stored = JSON.parse(localStorage.getItem("transactions"));
             stored.push(newTransaction)
             localStorage.setItem("transactions", JSON.stringify(stored))
