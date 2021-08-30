@@ -36,6 +36,7 @@ class Balance extends Component {
     render() {
         return (
             <>
+            
               <h4>{this.getTotal()} POINTS</h4>  
               <h3>{this.getPayers()}</h3>
             </>  
