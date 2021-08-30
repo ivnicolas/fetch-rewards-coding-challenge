@@ -9,11 +9,8 @@ const navBar = () => {
                 <li><a href="/all-transactions">All Transactions</a></li>
                 <li><a href="/">Balance</a></li>
             </ul>
-           
         </nav>
     );
 };
-
 export default navBar;
 
-<a className="nav-link" href="/new-post" style={{color: 'white'}}>Create Post</a>

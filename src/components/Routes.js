@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-
 import Balance from './Balance'
 import AddTransaction from './AddTransaction'
 import SpendPoints from './SpendPoints'
@@ -19,5 +18,4 @@ const Routes = () => {
         </BrowserRouter>
     );
 };
-
 export default Routes;

@@ -2,8 +2,6 @@ import './App.css';
 import React, { Component } from 'react';
 import NavBar from './components/NavBar';
 import Routes from './components/Routes';
-import Balance from './components/Balance';
-
 
 class App extends Component {
   render() {

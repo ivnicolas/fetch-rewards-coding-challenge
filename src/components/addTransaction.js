@@ -2,37 +2,41 @@ import React, {useState}from 'react';
 import { useHistory } from 'react-router-dom';
 
 const AddTransaction = () => {
-
+    //to reroute after submission 
     const history = useHistory();
+    //track the payer giving the points 
     const [payer, setPayer]= useState('');
+    // tracking the point amount 
     const [points,setPoints] = useState(0);
 
+    //form submission 
     const onSubmit = e => {
         e.preventDefault();
-      
+        //construct a new transaction object 
         const newTransaction = {
              id: Math.floor(Math.random()*10000) , 
              payer, 
              points: +points, 
              timestamp: Date().toLocaleString()
         } 
-        //you need to account for if there is something in local storage and if there is not 
+        //Does localstorage.transactions exists already or not 
         if(localStorage.transactions ){
-            let stored = JSON.parse(localStorage.getItem("transactions"));
-            stored.push(newTransaction)
-            localStorage.setItem("transactions", JSON.stringify(stored))
-            localStorage.setItem("pointsToSpend", JSON.stringify(stored))
+            //we want to get the transactions and pointsAvailable objects from localstorage 
+            //push our new transactions into both and push the changes back to localstorage
+            let transactions = JSON.parse(localStorage.getItem("transactions"));
+            let pointsAvailable = JSON.parse(localStorage.getItem("pointsAvailable"));
+                transactions.push(newTransaction)
+                pointsAvailable.push(newTransaction)
+                    localStorage.setItem("transactions", JSON.stringify(transactions))
+                    localStorage.setItem("pointsAvailable", JSON.stringify(pointsAvailable))
         }else{
-            let transaction = new Array (1).fill(newTransaction)
-            localStorage.setItem('transactions', JSON.stringify(transaction))
-            localStorage.setItem("pointsToSpend", JSON.stringify(transaction))
+            //for future calculations and storage database stucture purposes, transactions and pointsavailable to be an array of objects 
+            let firstTransaction = new Array (1).fill(newTransaction)
+                localStorage.setItem('transactions', JSON.stringify(firstTransaction))
+                localStorage.setItem("pointsAvailable", JSON.stringify(firstTransaction))
         }
-
          history.push('/')
-        
-
     }
-
         return (
            <form onSubmit={ onSubmit}>
                <label>Payer </label>
@@ -52,10 +56,4 @@ const AddTransaction = () => {
            </form>
     );
 };
-
 export default AddTransaction;
-
-
-
-
-
