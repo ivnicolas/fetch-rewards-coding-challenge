@@ -16,23 +16,55 @@ const SpendPoints = () => {
        // we want to push the changes to the two at the end of it all 
        let pointsToSpend = JSON.parse(localStorage.getItem("pointsToSpend"))
        let payerBalance = JSON.parse(localStorage.getItem("payers"))
+        let stored = JSON.parse(localStorage.getItem("transactions"))
+
 
         let pointsSpent = 0 
         for(let i = 0 ; pointsSpent<spendRequest.points; i++){
-            if(pointsToSpend[i].points - spendRequest.points< 0){
-                    debugger
+            if(spendRequest.points - pointsSpent >=pointsToSpend[i].points){
+
+                const transaction = {
+                    id: JSON.parse(localStorage.transactions).length , 
+                    payer: pointsToSpend[i].payer,
+                    points: -pointsToSpend[i].points, 
+                    timestamp: Date().toLocaleString()
+               }
+               stored.push(transaction)
+                    
                     pointsSpent+=pointsToSpend[i].points
                     //adjust the payer array to account for spent points 
                     payerBalance[pointsToSpend[i].payer] -= pointsToSpend[i].points
-                    debugger
+                  
+
+                  
+
+
                     //set that entry equal to zero 
                     pointsToSpend[i].points = 0
                     debugger
             }   else{
                     //all point cover the remainder
+                let difference=spendRequest.points - pointsSpent
+                let remainder = pointsToSpend[i].points - difference
+
+                    const transaction = {
+                        id: JSON.parse(localStorage.transactions).length , 
+                        payer: pointsToSpend[i].payer,
+                        points: -difference, 
+                        timestamp: Date().toLocaleString()
+                   }
+                   stored.push(transaction)
+                   pointsSpent+=difference
+
+                   payerBalance[pointsToSpend[i].payer] -= difference
+
+                   pointsToSpend[i].points = remainder
+
                     debugger
                 }
         }
+        localStorage.setItem("transactions", JSON.stringify(stored))
+        localStorage.setItem("payers", JSON.stringify(payerBalance))
 
         debugger
 
@@ -54,38 +86,7 @@ const SpendPoints = () => {
        if(parseInt(localStorage.balance)>spendRequest.points){
 
         testFunction()
-        //    let pointsSpent = 0 
-        //     for(let i = 0 ; pointsSpent=spendRequest.points; i++){
-        //         if(pointsToSpend[i].points - spendRequest.points< 0){
-        //                 pointsSpent+=pointsToSpend[i].points
-        //                 //adjust the payer array to account for spent points 
-        //                 payerBalance[pointsToSpend[i].payer] -= pointsToSpend[i].points
-        //                 //set that entry equal to zero 
-        //                 pointsToSpend[i].points = 0
-        //                 debugger
-        //         }   else{
-        //                 //all point cover the remainder
-        //                 debugger
-        //             }
-        //     }
-
-        
-        //    while(pointsSpent < spendRequest.points){
-        //         for(let i = 0 ; i<pointsToSpend.length; i++){
-        //             if(pointsToSpend[i].points - spendRequest.points< 0){
-        //                     pointsSpent+=pointsToSpend[i].points
-        //                     //adjust the payer array to account for spent points 
-        //                     payerBalance[pointsToSpend[i].payer] -= pointsToSpend[i].points
-        //                     //set that entry equal to zero 
-        //                     pointsToSpend[i].points = 0
-        //                     debugger
-        //             }   else{
-        //                     //all point cover the remainder
-        //                     debugger
-        //                 }
-        //         }
-
-        //     }    
+        history.push('/all-transactions')   
        }else{
            // workout error handling
            debugger

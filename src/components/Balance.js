@@ -3,23 +3,27 @@ import React, { Component } from 'react';
 class Balance extends Component {
     
     getPayers(){
-    let allTransactions = JSON.parse(localStorage.pointsToSpend)
-      if(localStorage.length !==0) {
+    let allTransactions = JSON.parse(localStorage.transactions)
+      if(localStorage.transactions) {
         let payers = allTransactions.reduce(function(r,a){
-            r[a.payer] = r[a.payer]+a.points || a.points;
+            if(r[a.payer]){
+                r[a.payer]+=a.points
+            } else{
+                r[a.payer]=a.points;
+            } 
             return r
         }, Object.create(null))
         localStorage.setItem("payers", JSON.stringify(payers))
         return JSON.stringify(payers)
       }
       else{
-          return "No Transactios to Report"
+          return "No Transactions to Report"
       }
     }
    
    getTotal(){
        let balance = 0 
-       if(localStorage.length !== 0){
+       if(localStorage.transactions){
         let allTransactions = JSON.parse(localStorage.transactions)
         balance = allTransactions.reduce((acc,transaction) => acc + transaction.points,0)
         localStorage.setItem("balance", JSON.stringify(balance))
