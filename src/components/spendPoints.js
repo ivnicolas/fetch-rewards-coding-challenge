@@ -6,7 +6,7 @@ const SpendPoints = () => {
     const history = useHistory();
     const [points,setPoints] = useState(0)
 
-    const testFunction = () => {
+    const spendingCalculations = () => {
 
         const spendRequest = {
             points: +points, 
@@ -80,13 +80,13 @@ const SpendPoints = () => {
        let payerBalance = JSON.parse(localStorage.getItem("payers"))
 
 
-       if(parseInt(localStorage.balance)>spendRequest.points){
+       if(parseInt(localStorage.balance)>=spendRequest.points){
 
-        testFunction()
+        spendingCalculations()
         history.push('/all-transactions')   
        }else{
            // workout error handling
-           debugger
+           alert("Insufficient Funds: Transaction cannot be completed with your current Balance")
         }
        
     }

@@ -1,5 +1,5 @@
 Need to Do 
-- fix the points to spend function 
-- change to name of points to spend 
--error handling if you cannot spend that amount
-- refactor so the page doesn't error out when there are no transactions to report 
+- fix the points to spend function (DONE)
+- change to name of points to spend (DONE)
+- error handling if you cannot spend that amount (DONE)
+- refactor so the page doesn't error out when there are no transactions to report (DONE)
