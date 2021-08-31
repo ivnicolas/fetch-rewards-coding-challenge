@@ -35,11 +35,11 @@ class Balance extends Component {
    }
     render() {
         return (
-            <>
-            
-              <h4>{this.getTotal()} POINTS</h4>  
-              <h3>{this.getPayers()}</h3>
-            </>  
+            <div className='center'>
+            <h2 style={{color: 'orange'}}>SUMMARY</h2>
+            <h2>TOTAL POINTS : {this.getTotal()} POINTS </h2>
+            <h2>PAYER BALANCE: {this.getPayers()}</h2>
+            </div>  
         );
     }
 }

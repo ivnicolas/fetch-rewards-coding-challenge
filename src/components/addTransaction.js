@@ -38,6 +38,8 @@ const AddTransaction = () => {
          history.push('/')
     }
         return (
+            <div className="center">
+            <h2 style={{color: 'orange'}}> ADD TRANSACTION</h2>
            <form onSubmit={ onSubmit}>
                <label>Payer </label>
                 <br/>
@@ -52,8 +54,10 @@ const AddTransaction = () => {
                 <br/>
                 <input type="number" name="points"  value={points} onChange={(e)=> setPoints(e.target.value)} placeholder="Enter Points" required/>
                 <br/>
+                <br/>
                 <button>Add Transaction</button>
            </form>
+           </div>
     );
 };
 export default AddTransaction;

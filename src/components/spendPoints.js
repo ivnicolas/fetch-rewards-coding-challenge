@@ -79,16 +79,16 @@ const SpendPoints = () => {
     }
 
     return (
-        <>
-         <h3> How Many Points Do You Want To Spend</h3>
+        <div className="center">
+         <h2 style={{color: 'orange'}}> HOW MANY POINTS DO YOU WANT TO SPEND?</h2>
         <form onSubmit={onSubmit}>
             <label> Points</label>
             <br/>
             <input type="number" name="points"  value={points} onChange={(e)=> setPoints(e.target.value)} placeholder="Enter Points" required/>
-            <br/>
+            <br/><br/>
             <button>Spend Points</button>
         </form>
-        </>
+        </div>
     );
 };
 export default SpendPoints;

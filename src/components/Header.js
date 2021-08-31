@@ -4,7 +4,7 @@ const Header = () =>(
     <div>
         <header className="header">
         <h1 >Welcome to Points Tracker</h1>
-        <h6>One stop place to track your transactions</h6>
+        <h4>One stop place to track your transactions</h4>
         </header>
      </div>
 )
